@@ -89,12 +89,25 @@
 
 <footer>Hecho con todo el amor del mundo &middot; Para Nay &#x1F496;</footer>
 
-<!-- Music player -->
-<button id="musicBtn" title="Reproducir m&#250;sica">
-  <span id="musicIcon">&#x1F3B5;</span>
-  <span id="musicLabel">Isn&#39;t She Lovely</span>
-</button>
-<div id="ytPlayerDiv" style="display:none; width:0; height:0; overflow:hidden; position:absolute;"></div>
+<!-- Music player: Spotify embed -->
+<div id="spotifyBar">
+  <span id="spotifyLabel">&#x1F3B5; Isn&#39;t She Lovely</span>
+  <iframe
+    id="spotifyEmbed"
+    src=""
+    data-src="https://open.spotify.com/embed/track/3eBzNTCF1sFCGNlb90tBMs?utm_source=generator&theme=0"
+    width="100%"
+    height="80"
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+    style="border-radius:12px; display:none"
+  ></iframe>
+  <button id="musicBtn" onclick="openSpotify()">
+    <span id="musicIcon">&#x1F3B5;</span>
+    <span id="musicLabel">Isn&#39;t She Lovely</span>
+  </button>
+</div>
 
 <script src="main.js"></script>
 </body>

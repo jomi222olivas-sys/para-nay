@@ -41,7 +41,7 @@ window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
 
 /* ── Floating hearts ── */
 const container = document.getElementById('heartsContainer');
-const symbols = ['\uD83D\uDC96', '\uD83D\uDC97', '\uD83D\uDC93', '\uD83D\uDC95', '\uD83D\uDC9E', '\u2764\uFE0F', '\uD83E\uDE77', '\u2728'];
+const symbols = ['\uD83D\uDC96','\uD83D\uDC97','\uD83D\uDC93','\uD83D\uDC95','\uD83D\uDC9E','\u2764\uFE0F','\uD83E\uDE77','\u2728'];
 
 function spawnHeart() {
   const el = document.createElement('span');
@@ -59,50 +59,27 @@ function spawnHeart() {
 for (let i = 0; i < 18; i++) setTimeout(spawnHeart, i * 600);
 setInterval(spawnHeart, 1200);
 
-/* ── Music player (YouTube IFrame API) ── */
-const SONG_ID = 'sfmRION5MFc';
-let ytPlayer = null;
-let playing  = false;
+/* ── Music: Spotify embed ── */
+let spotifyOpen = false;
 
-(function () {
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-})();
+function openSpotify() {
+  const iframe = document.getElementById('spotifyEmbed');
+  const btn    = document.getElementById('musicBtn');
+  const label  = document.getElementById('spotifyLabel');
 
-window.onYouTubeIframeAPIReady = function () {
-  ytPlayer = new YT.Player('ytPlayerDiv', {
-    videoId: SONG_ID,
-    playerVars: {
-      autoplay: 0,
-      controls: 0,
-      loop: 1,
-      playlist: SONG_ID,
-      rel: 0,
-      playsinline: 1
+  if (!spotifyOpen) {
+    // Lazy-load the src only on first click (respects autoplay policy)
+    if (!iframe.src || iframe.src === window.location.href) {
+      iframe.src = iframe.getAttribute('data-src');
     }
-  });
-};
-
-function toggleMusic() {
-  const btn = document.getElementById('musicBtn');
-  if (!ytPlayer || typeof ytPlayer.playVideo !== 'function') return;
-  if (!playing) {
-    ytPlayer.playVideo();
-    btn.classList.add('playing');
-    document.getElementById('musicIcon').textContent = '\u23F8\uFE0F';
-    document.getElementById('musicLabel').textContent = 'Pausar';
+    iframe.style.display = 'block';
+    btn.style.display    = 'none';
+    label.style.display  = 'none';
+    spotifyOpen = true;
   } else {
-    ytPlayer.pauseVideo();
-    btn.classList.remove('playing');
-    document.getElementById('musicIcon').textContent = '\uD83C\uDFB5';
-    document.getElementById('musicLabel').textContent = "Isn't She Lovely";
+    iframe.style.display = 'none';
+    btn.style.display    = 'flex';
+    label.style.display  = 'block';
+    spotifyOpen = false;
   }
-  playing = !playing;
 }
-
-document.getElementById('musicBtn').addEventListener('click', toggleMusic);
-document.getElementById('musicBtn').addEventListener('touchend', function (e) {
-  e.preventDefault();
-  toggleMusic();
-});

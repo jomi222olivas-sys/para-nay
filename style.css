@@ -222,6 +222,23 @@ footer {
   z-index: 1;
 }
 
+/* Music bar */
+#spotifyBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
+}
+#spotifyBar iframe {
+  pointer-events: all;
+  width: min(500px, 96vw);
+}
 /* Music button */
 #musicBtn {
   position: fixed;
