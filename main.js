@@ -69,11 +69,13 @@ function toggleMusic() {
   if (!playing) {
     player.src = `https://www.youtube.com/embed/${SONG_ID}?autoplay=1&loop=1&playlist=${SONG_ID}&controls=0`;
     btn.classList.add('playing');
-    document.getElementById('musicIcon').textContent = '\u23F8';
+    document.getElementById('musicIcon').textContent = '⏸';
+    document.getElementById('musicLabel').textContent = 'Pausar';
   } else {
     player.src = '';
     btn.classList.remove('playing');
-    document.getElementById('musicIcon').textContent = '\uD83C\uDFB5';
+    document.getElementById('musicIcon').textContent = '🎵';
+    document.getElementById('musicLabel').textContent = "Isn't She Lovely";
   }
   playing = !playing;
 }
