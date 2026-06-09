@@ -1,4 +1,4 @@
-/* ── Starfield ── */
+﻿/* ── Starfield ── */
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -41,7 +41,7 @@ window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
 
 /* ── Floating hearts ── */
 const container = document.getElementById('heartsContainer');
-const symbols = ['💖', '💗', '💓', '💕', '💞', '❤️', '🩷', '✨'];
+const symbols = ['\uD83D\uDC96', '\uD83D\uDC97', '\uD83D\uDC93', '\uD83D\uDC95', '\uD83D\uDC9E', '\u2764\uFE0F', '\uD83E\uDE77', '\u2728'];
 
 function spawnHeart() {
   const el = document.createElement('span');
@@ -59,30 +59,50 @@ function spawnHeart() {
 for (let i = 0; i < 18; i++) setTimeout(spawnHeart, i * 600);
 setInterval(spawnHeart, 1200);
 
-/* ── Music player ── */
-const SONG_ID = 'sfmRION5MFc'; // Isn’t She Lovely – Stevie Wonder
-let playing = false;
+/* ── Music player (YouTube IFrame API) ── */
+const SONG_ID = 'sfmRION5MFc';
+let ytPlayer = null;
+let playing  = false;
+
+(function () {
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+})();
+
+window.onYouTubeIframeAPIReady = function () {
+  ytPlayer = new YT.Player('ytPlayerDiv', {
+    videoId: SONG_ID,
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      loop: 1,
+      playlist: SONG_ID,
+      rel: 0,
+      playsinline: 1
+    }
+  });
+};
 
 function toggleMusic() {
-  const btn    = document.getElementById('musicBtn');
-  const player = document.getElementById('ytPlayer');
+  const btn = document.getElementById('musicBtn');
+  if (!ytPlayer || typeof ytPlayer.playVideo !== 'function') return;
   if (!playing) {
-    player.src = 'https://www.youtube.com/embed/' + SONG_ID + '?autoplay=1&loop=1&playlist=' + SONG_ID + '&controls=0&rel=0';
+    ytPlayer.playVideo();
     btn.classList.add('playing');
-    document.getElementById('musicIcon').textContent = '⏸️';
+    document.getElementById('musicIcon').textContent = '\u23F8\uFE0F';
     document.getElementById('musicLabel').textContent = 'Pausar';
   } else {
-    player.src = '';
+    ytPlayer.pauseVideo();
     btn.classList.remove('playing');
-    document.getElementById('musicIcon').textContent = '🎵';
+    document.getElementById('musicIcon').textContent = '\uD83C\uDFB5';
     document.getElementById('musicLabel').textContent = "Isn't She Lovely";
   }
   playing = !playing;
 }
 
 document.getElementById('musicBtn').addEventListener('click', toggleMusic);
-document.getElementById('musicBtn').addEventListener('touchend', function(e) {
+document.getElementById('musicBtn').addEventListener('touchend', function (e) {
   e.preventDefault();
   toggleMusic();
 });
-
