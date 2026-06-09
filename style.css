@@ -212,44 +212,6 @@ body {
   text-align: right;
 }
 
-/* Countdown */
-.countdown-section {
-  text-align: center;
-  animation: fadeUp 1s ease 0.7s both;
-}
-.countdown-section h2 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
-  color: #ff9fdb;
-  margin-bottom: 20px;
-}
-.countdown-boxes {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.cbox {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,120,200,0.25);
-  border-radius: 16px;
-  padding: 18px 22px;
-  min-width: 80px;
-  backdrop-filter: blur(8px);
-}
-.cbox .num {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: #ff80c0;
-  display: block;
-}
-.cbox .lbl {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #bbb;
-}
-
 /* Footer */
 footer {
   text-align: center;

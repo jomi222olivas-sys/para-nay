@@ -59,22 +59,3 @@ function spawnHeart() {
 for (let i = 0; i < 18; i++) setTimeout(spawnHeart, i * 600);
 setInterval(spawnHeart, 1200);
 
-/* ── Countdown ── */
-// ← Cambia esta fecha por la fecha en que comenzaron su relación
-const startDate = new Date('2025-01-01T00:00:00');
-
-function updateCountdown() {
-  const now  = new Date();
-  const diff = Math.max(0, now - startDate);
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000)  / 60000);
-  const s = Math.floor((diff % 60000)    / 1000);
-  document.getElementById('days').textContent  = d;
-  document.getElementById('hours').textContent = String(h).padStart(2, '0');
-  document.getElementById('mins').textContent  = String(m).padStart(2, '0');
-  document.getElementById('secs').textContent  = String(s).padStart(2, '0');
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
