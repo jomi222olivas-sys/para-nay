@@ -221,3 +221,36 @@ footer {
   position: relative;
   z-index: 1;
 }
+
+/* Music button */
+#musicBtn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 100;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 95, 160, 0.2);
+  border: 1px solid rgba(255, 120, 200, 0.4);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 18px rgba(255, 80, 170, 0.25);
+}
+#musicBtn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 30px rgba(255, 80, 170, 0.5);
+}
+#musicBtn.playing {
+  animation: spinNote 3s linear infinite;
+}
+@keyframes spinNote {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.08); }
+  100% { transform: rotate(360deg) scale(1); }
+}

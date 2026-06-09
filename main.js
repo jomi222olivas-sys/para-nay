@@ -59,3 +59,22 @@ function spawnHeart() {
 for (let i = 0; i < 18; i++) setTimeout(spawnHeart, i * 600);
 setInterval(spawnHeart, 1200);
 
+/* ── Music player ── */
+const SONG_ID = 'sfmRION5MFc'; // Isn’t She Lovely – Stevie Wonder
+let playing = false;
+
+function toggleMusic() {
+  const btn    = document.getElementById('musicBtn');
+  const player = document.getElementById('ytPlayer');
+  if (!playing) {
+    player.src = `https://www.youtube.com/embed/${SONG_ID}?autoplay=1&loop=1&playlist=${SONG_ID}&controls=0`;
+    btn.classList.add('playing');
+    document.getElementById('musicIcon').textContent = '\u23F8';
+  } else {
+    player.src = '';
+    btn.classList.remove('playing');
+    document.getElementById('musicIcon').textContent = '\uD83C\uDFB5';
+  }
+  playing = !playing;
+}
+
