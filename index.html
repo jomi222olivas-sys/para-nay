@@ -90,16 +90,15 @@
 <footer>Hecho con todo el amor del mundo &middot; Para Nay &#x1F496;</footer>
 
 <!-- Music player -->
-<div id="musicBtn" title="Reproducir m&#250;sica" onclick="toggleMusic()">
+<button id="musicBtn" title="Reproducir m&#250;sica">
   <span id="musicIcon">&#x1F3B5;</span>
   <span id="musicLabel">Isn&#39;t She Lovely</span>
-</div>
+</button>
 <iframe
   id="ytPlayer"
   src=""
-  allow="autoplay"
-  style="display:none"
-  frameborder="0"
+  allow="autoplay; encrypted-media"
+  style="display:none; width:0; height:0; border:0"
 ></iframe>
 
 <script src="main.js"></script>

@@ -232,6 +232,7 @@ footer {
   border-radius: 999px;
   background: linear-gradient(135deg, #ff5fa0, #c46bff);
   border: none;
+  outline: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -246,6 +247,8 @@ footer {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  -webkit-appearance: none;
+  appearance: none;
 }
 #musicBtn:hover {
   transform: scale(1.07);

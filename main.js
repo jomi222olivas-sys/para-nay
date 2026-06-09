@@ -67,9 +67,9 @@ function toggleMusic() {
   const btn    = document.getElementById('musicBtn');
   const player = document.getElementById('ytPlayer');
   if (!playing) {
-    player.src = `https://www.youtube.com/embed/${SONG_ID}?autoplay=1&loop=1&playlist=${SONG_ID}&controls=0`;
+    player.src = 'https://www.youtube.com/embed/' + SONG_ID + '?autoplay=1&loop=1&playlist=' + SONG_ID + '&controls=0&rel=0';
     btn.classList.add('playing');
-    document.getElementById('musicIcon').textContent = '⏸';
+    document.getElementById('musicIcon').textContent = '⏸️';
     document.getElementById('musicLabel').textContent = 'Pausar';
   } else {
     player.src = '';
@@ -79,4 +79,10 @@ function toggleMusic() {
   }
   playing = !playing;
 }
+
+document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+document.getElementById('musicBtn').addEventListener('touchend', function(e) {
+  e.preventDefault();
+  toggleMusic();
+});
 
